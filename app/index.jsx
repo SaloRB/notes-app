@@ -6,8 +6,6 @@ import PostItImage from '@/assets/images/post-it.png'
 const HomeScreen = () => {
   const router = useRouter()
 
-  const text = 'Hello World'
-
   return (
     <View style={styles.container}>
       <Image source={PostItImage} style={styles.image} />

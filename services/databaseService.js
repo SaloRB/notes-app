@@ -2,7 +2,7 @@ import { database } from './appwrite'
 
 const databaseService = {
   // List Documents
-  async listDoucments(dbId, colId) {
+  async listDocuments(dbId, colId) {
     try {
       const response = await database.listDocuments(dbId, colId)
       return response.documents || []

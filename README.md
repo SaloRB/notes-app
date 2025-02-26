@@ -4,7 +4,7 @@ This is a simple Notes App built with React Native. The app allows users to add,
 
 ## Features
 
-- [ ] Add Note to Database
+- [x] Add Note to Database
 - [ ] Delete Notes
 - [ ] Update Notes
 - [ ] Add Auth with Appwrite

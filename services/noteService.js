@@ -16,6 +16,7 @@ const noteService = {
 
     return { data: response }
   },
+
   // Add New Note
   async addNote(text) {
     if (!text) return { error: 'Note text is required' }
@@ -32,6 +33,15 @@ const noteService = {
     if (response.error) return { error: response.error }
 
     return { data: response }
+  },
+
+  // Delete Note
+  async deleteNote(id) {
+    const response = await databaseService.deleteDocument(dbId, colId, id)
+
+    if (response.error) return { error: response.error }
+
+    return { success: true }
   },
 }
 

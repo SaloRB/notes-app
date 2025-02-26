@@ -1,7 +1,4 @@
-import noteService from '@/services/noteService'
-import { useState } from 'react'
 import {
-  Alert,
   Modal,
   StyleSheet,
   Text,
@@ -10,25 +7,13 @@ import {
   View,
 } from 'react-native'
 
-const AddNoteModal = ({ notes, setNotes, modalVisible, setModalVisible }) => {
-  const [newNote, setNewNote] = useState('')
-
-  // Add New Note
-  const addNote = async () => {
-    if (newNote.trim() === '') return
-
-    const response = await noteService.addNote(newNote)
-
-    if (response.error) {
-      Alert.alert('Error', response.error)
-    } else {
-      setNotes([...notes, response.data])
-    }
-
-    setNewNote('')
-    setModalVisible(false)
-  }
-
+const AddNoteModal = ({
+  newNote,
+  setNewNote,
+  addNote,
+  modalVisible,
+  setModalVisible,
+}) => {
   return (
     <Modal
       visible={modalVisible}

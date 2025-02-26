@@ -14,6 +14,7 @@ import noteService from '@/services/noteService'
 
 const NotesScreen = () => {
   const [notes, setNotes] = useState([])
+  const [newNote, setNewNote] = useState('')
   const [modalVisible, setModalVisible] = useState(false)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -37,6 +38,41 @@ const NotesScreen = () => {
     setLoading(false)
   }
 
+  // Add New Note
+  const addNote = async () => {
+    if (newNote.trim() === '') return
+
+    const response = await noteService.addNote(newNote)
+
+    if (response.error) {
+      Alert.alert('Error', response.error)
+    } else {
+      setNotes([...notes, response.data])
+    }
+
+    setNewNote('')
+    setModalVisible(false)
+  }
+
+  // Delete Note
+  const deleteNote = async (id) => {
+    Alert.alert('Delete Note', 'Are you sure you want to delete this note?', [
+      { text: 'Cancel', style: 'cancel' },
+      {
+        text: 'Delete',
+        style: 'destructive',
+        onPress: async () => {
+          const response = await noteService.deleteNote(id)
+          if (response.error) {
+            Alert.alert('Error', response.error)
+          } else {
+            setNotes(notes.filter((note) => note.$id !== id))
+          }
+        },
+      },
+    ])
+  }
+
   return (
     <View style={styles.container}>
       {loading ? (
@@ -44,7 +80,7 @@ const NotesScreen = () => {
       ) : (
         <>
           {error && <Text style={styles.errorText}>{error}</Text>}
-          <NoteList notes={notes} />
+          <NoteList notes={notes} onDelete={deleteNote} />
         </>
       )}
 
@@ -56,8 +92,9 @@ const NotesScreen = () => {
       </TouchableOpacity>
 
       <AddNoteModal
-        notes={notes}
-        setNotes={setNotes}
+        newNote={newNote}
+        setNewNote={setNewNote}
+        addNote={addNote}
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
       />

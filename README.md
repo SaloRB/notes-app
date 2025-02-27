@@ -15,7 +15,7 @@ This is a simple Notes App built with React Native. The app allows users to add,
 - [x] Logout
 - [x] Redirect logged in users
 - [x] Filter user notes
-- [ ] No note display
+- [x] No note display
 
 ## Getting Started
 

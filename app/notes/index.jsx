@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import {
   ActivityIndicator,
   Alert,
@@ -34,9 +34,9 @@ const NotesScreen = () => {
     if (user) {
       fetchNotes()
     }
-  }, [user])
+  }, [user, fetchNotes])
 
-  const fetchNotes = async () => {
+  const fetchNotes = useCallback(async () => {
     setLoading(true)
     const response = await noteService.getNotes(user.$id)
 
@@ -49,7 +49,7 @@ const NotesScreen = () => {
     }
 
     setLoading(false)
-  }
+  }, [user])
 
   // Add New Note
   const addNote = async () => {

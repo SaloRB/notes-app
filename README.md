@@ -9,7 +9,7 @@ This is a simple Notes App built with React Native. The app allows users to add,
 - [x] Update Notes
 - [x] Add Auth with Appwrite
 - [x] Create Auth Context and Provider
-- [ ] Auth Screen
+- [x] Auth Screen
 - [ ] Login and Register forms
 - [ ] Auth functionality
 - [ ] Logout

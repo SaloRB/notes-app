@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
     setLoading(true)
     const response = await authService.getUser()
 
-    if (response.error) {
+    if (response?.error) {
       setUser(null)
     } else {
       setUser(response)
